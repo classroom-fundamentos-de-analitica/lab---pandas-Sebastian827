@@ -15,6 +15,7 @@ tbl2 = pd.read_csv("tbl2.tsv", sep="\t")
 
 
 def pregunta_01():
+    
     """
     ¿Cuál es la cantidad de filas en la tabla `tbl0.tsv`?
 
@@ -22,7 +23,7 @@ def pregunta_01():
     40
 
     """
-    return
+    return len(tbl0)
 
 
 def pregunta_02():
@@ -33,11 +34,14 @@ def pregunta_02():
     4
 
     """
-    return
+    return len(tbl0.columns)
+
 
 
 def pregunta_03():
+    count = tbl0["_c1"].value_counts()
     """
+    
     ¿Cuál es la cantidad de registros por cada letra de la columna _c1 del archivo
     `tbl0.tsv`?
 
@@ -50,7 +54,7 @@ def pregunta_03():
     Name: _c1, dtype: int64
 
     """
-    return
+    return count
 
 
 def pregunta_04():
@@ -66,7 +70,7 @@ def pregunta_04():
     Name: _c2, dtype: float64
     """
     return
-
+print(pregunta_04())
 
 def pregunta_05():
     """
