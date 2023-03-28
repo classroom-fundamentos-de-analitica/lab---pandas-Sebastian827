@@ -23,9 +23,9 @@ def pregunta_01():
     40
 
     """
-    return len(tbl0)
+    return tbl0.shape[0]
 
-
+print(pregunta_01())
 def pregunta_02():
     """
     ¿Cuál es la cantidad de columnas en la tabla `tbl0.tsv`?
@@ -263,4 +263,3 @@ def pregunta_13():
     Name: _c5b, dtype: int64
     """
     return tbl
-print(pregunta_12())
