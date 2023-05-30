@@ -39,7 +39,8 @@ def pregunta_02():
 
 
 def pregunta_03():
-    count = tbl0["_c1"].value_counts()
+    count = tbl0["_c1"].value_counts().sort_index()
+
     """
     
     ¿Cuál es la cantidad de registros por cada letra de la columna _c1 del archivo
@@ -128,7 +129,9 @@ def pregunta_08():
 
     sum=tbl0["_c0"]+tbl0["_c2"]
 
-    tbl0.insert(len(tbl0.columns),"suma",sum)
+    tbl= tbl0.copy()
+
+    tbl.insert(len(tbl0.columns),"suma",sum)
 
     """
     Agregue una columna llamada `suma` con la suma de _c0 y _c2 al archivo `tbl0.tsv`.
@@ -144,18 +147,16 @@ def pregunta_08():
     39   39   E    5  1998-01-26    44
 
     """
-    return tbl0
+    return tbl
 
 
 
 def pregunta_09():
-    date=tbl0["_c3"]
+    date=tbl0.copy()
     
 
-    date=pd.to_datetime(date, errors='coerce')[:31]
-    year=date.dt.year.astype(int)
-    print(year)
-    tbl0.insert(len(tbl0.columns),"year",year)
+    date['year']=date['_c3'].str[:4]
+   
 
 
 
@@ -174,14 +175,15 @@ def pregunta_09():
     39   39   E    5  1998-01-26  1998
 
     """
-    return tbl0
+    return date
 
-##Falta resolver este punto
+
 
 def pregunta_10():
-    tbl0["_c2"]=tbl0["_c2"].astype(str)
-    prom = tbl0.sort_values("_c2").groupby("_c1")["_c2"].apply(lambda x: ":".join(x))
-    tbl=pd.DataFrame(prom).reset_index()
+    tbl=tbl0.copy()
+    tbl["_c2"]=tbl["_c2"].astype(str)
+    prom = tbl.sort_values("_c2").groupby("_c1")["_c2"].apply(lambda x: ":".join(x))
+    tbls=pd.DataFrame(prom).reset_index()
     """
     Construya una tabla que contenga _c1 y una lista separada por ':' de los valores de
     la columna _c2 para el archivo `tbl0.tsv`.
@@ -195,7 +197,7 @@ def pregunta_10():
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
-    return tbl
+    return tbls
 
 
 
