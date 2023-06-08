@@ -181,9 +181,9 @@ def pregunta_09():
 
 def pregunta_10():
     tbl=tbl0.copy()
-    tbl["_c2"]=tbl["_c2"].astype(str)
-    prom = tbl.sort_values("_c2").groupby("_c1")["_c2"].apply(lambda x: ":".join(x))
-    ##tbls=pd.DataFrame(prom).reset_index()
+    tbl=tbl.groupby('_c1').agg({'_c2': lambda c: sorted(list(c))})
+    for i,j in tbl.iterrows():
+        j['c_2']=":".join([str(x) for x in j['_c2']])
     """
     Construya una tabla que contenga _c1 y una lista separada por ':' de los valores de
     la columna _c2 para el archivo `tbl0.tsv`.
@@ -197,7 +197,7 @@ def pregunta_10():
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
-    return prom
+    return tbl
 
 print("preg 10")
 print(pregunta_10())
