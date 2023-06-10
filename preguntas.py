@@ -183,7 +183,7 @@ def pregunta_10():
     tbl=tbl0.copy()
     tbl=tbl.groupby('_c1').agg({'_c2': lambda c: sorted(list(c))})
     for i,j in tbl.iterrows():
-        j['c_2']=":".join([str(x) for x in j['_c2']])
+        j['_c2']=":".join([str(x) for x in j['_c2']])
     """
     Construya una tabla que contenga _c1 y una lista separada por ':' de los valores de
     la columna _c2 para el archivo `tbl0.tsv`.
